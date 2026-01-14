@@ -1,0 +1,18 @@
+services:
+    postgres:
+            container_name: telebot-postgres
+            image: postgres:latest
+            restart: unless-stopped
+            environment:
+                - POSTGRES_USER=telebot
+                - POSTGRES_PASSWORD=85bc6423135dca8f2ad803a3
+                - POSTGRES_DB=telebot
+            ports:
+                - 5432:5432
+            volumes:
+                - postgres_data:/var/lib/postgresql/data
+volumes:
+    postgres_data:
+    
+networks:
+    default: {}

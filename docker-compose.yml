@@ -1,0 +1,29 @@
+services:
+    bot:
+        container_name: telebot-bot
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - NODE_ENV=production
+        env_file:
+            - path: ./.env
+              required: false
+            - path: ./.env.production
+              required: false
+    postgres:
+        container_name: telebot-postgres
+        image: postgres:latest
+        restart: unless-stopped
+        environment:
+            - POSTGRES_USER=telebot
+            - POSTGRES_PASSWORD=85bc6423135dca8f2ad803a3
+            - POSTGRES_DB=telebot
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+volumes:
+    postgres_data:
+    
+networks:
+    default: {}
